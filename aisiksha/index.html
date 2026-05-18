@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Siksha | A QuantumEdge Coaching Services Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --saffron: #FF9933;
+      --saffron-light: #FFB366;
+      --saffron-pale: #FFF3E0;
+      --navy: #000080;
+      --navy-dark: #00004D;
+      --navy-light: #1a1aaa;
+      --white: #FFFFFF;
+      --off-white: #FDFAF5;
+      --gray-100: #F8F9FA;
+      --gray-200: #E9ECEF;
+      --gray-600: #6C757D;
+      --gray-800: #343A40;
+      --green-india: #138808;
+      --text-dark: #1A1A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── Tricolor top bar ── */
+    .tricolor-bar {
+      width: 100%;
+      height: 9px;
+      display: flex;
+    }
+    .tricolor-bar span {
+      flex: 1;
+      display: block;
+    }
+    .tricolor-bar .tc-saffron { background: var(--saffron); }
+    .tricolor-bar .tc-white   { background: #FFFFFF; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; }
+    .tricolor-bar .tc-green   { background: var(--green-india); }
+
+    /* ── Navbar ── */
+    nav {
+      background: var(--navy-dark);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--saffron), #FF6600);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: white;
+      letter-spacing: -1px;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+    .nav-logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--saffron-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--saffron); }
+    .nav-cta {
+      background: var(--saffron);
+      color: var(--navy-dark) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--saffron-light) !important; }
+
+    /* ── Marquee ── */
+    .marquee-section {
+      background: var(--saffron);
+      padding: 0.6rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy-dark);
+      white-space: nowrap;
+      padding: 0 2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .marquee-dot {
+      color: var(--navy);
+      font-size: 0.5rem;
+      vertical-align: middle;
+      opacity: 0.5;
+    }
+    .marquee-label {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--navy-dark);
+      padding-right: 2rem;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--navy-dark);
+      position: relative;
+      overflow: hidden;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-bg-numeral {
+      position: absolute;
+      top: 50%;
+      right: -2%;
+      transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(200px, 30vw, 440px);
+      font-weight: 900;
+      color: rgba(255,153,51,0.07);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-bg-circle-1 {
+      width: 600px; height: 600px;
+      top: -200px; left: -200px;
+      background: radial-gradient(circle, rgba(255,153,51,0.12) 0%, transparent 70%);
+    }
+    .hero-bg-circle-2 {
+      width: 400px; height: 400px;
+      bottom: -100px; right: 25%;
+      background: radial-gradient(circle, rgba(0,0,128,0.4) 0%, transparent 70%);
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,153,51,0.15);
+      border: 1px solid rgba(255,153,51,0.4);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--saffron);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--saffron);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-tagline-devanagari {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--saffron);
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+      font-style: italic;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero-title .accent { color: var(--saffron); }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      max-width: 580px;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--saffron);
+      color: var(--navy-dark);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover {
+      background: var(--saffron-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,153,51,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.35);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-outline:hover {
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,153,51,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    .hero-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--saffron);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-card-title::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--saffron);
+      display: inline-block;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-item {
+      background: rgba(255,153,51,0.08);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid rgba(255,153,51,0.15);
+      transition: background 0.2s;
+    }
+    .stat-item:hover { background: rgba(255,153,51,0.15); }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--saffron);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    /* ── Section base ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--saffron);
+      margin-bottom: 0.75rem;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--saffron);
+      display: inline-block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--gray-600);
+      max-width: 620px;
+      line-height: 1.7;
+    }
+    .section-header { margin-bottom: 3rem; }
+
+    /* ── Why QuantumEdge ── */
+    .why-section { background: var(--off-white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid var(--gray-200);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--saffron), #FF6600);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,128,0.1); }
+    .why-card:hover::before { transform: scaleX(1); }
+    .why-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--saffron-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+    .why-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 0.6rem;
+    }
+    .why-card p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* ── Programs ── */
+    .programs-section { background: var(--white); }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .program-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 2rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .program-card:hover {
+      border-color: var(--saffron);
+      box-shadow: 0 8px 30px rgba(255,153,51,0.15);
+      transform: translateY(-3px);
+    }
+    .program-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .program-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .program-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+    }
+    .badge-hot   { background: #FFF0E5; color: #E85A00; }
+    .badge-new   { background: #E5F5E9; color: #2E7D32; }
+    .badge-core  { background: #E8EAF6; color: #283593; }
+    .badge-adv   { background: #FFF8E1; color: #F57F17; }
+    .program-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 0.6rem;
+    }
+    .program-card p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .program-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .program-tag {
+      background: var(--saffron-pale);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Cities ── */
+    .cities-section { background: var(--navy-dark); padding: 4rem 2rem; }
+    .cities-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .cities-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.875rem;
+      margin-bottom: 2.5rem;
+    }
+    .cities-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .city-chip {
+      background: rgba(255,153,51,0.1);
+      border: 1px solid rgba(255,153,51,0.2);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .city-chip:hover {
+      background: rgba(255,153,51,0.2);
+      border-color: var(--saffron);
+    }
+    .city-name {
+      font-weight: 600;
+      color: white;
+      font-size: 0.9rem;
+    }
+    .city-icon { font-size: 1.3rem; margin-bottom: 0.35rem; }
+
+    /* ── Testimonials ── */
+    .testimonials-section { background: var(--saffron-pale); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(255,153,51,0.15);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--saffron);
+      opacity: 0.2;
+      position: absolute;
+      top: 0.5rem;
+      left: 1.25rem;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: 0.925rem;
+      color: var(--gray-800);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), #FF6600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy-dark);
+    }
+    .author-role {
+      font-size: 0.78rem;
+      color: var(--gray-600);
+      margin-top: 0.1rem;
+    }
+    .stars {
+      color: var(--saffron);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Contact ── */
+    .contact-section { background: white; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--off-white);
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--gray-200);
+    }
+    .contact-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--saffron-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-600);
+    }
+    .contact-item-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy-dark);
+    }
+    .contact-form-card {
+      background: var(--navy-dark);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .contact-form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1.75rem;
+    }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: white;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--saffron); }
+    .form-group select option { background: var(--navy-dark); color: white; }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%;
+      background: var(--saffron);
+      color: var(--navy-dark);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover {
+      background: var(--saffron-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #00003A;
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 2rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+    .footer-brand p {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+    .footer-made {
+      font-weight: 600;
+      color: var(--saffron);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+    }
+    .footer-copy { color: rgba(255,255,255,0.35); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AI Siksha Top Banner -->
+  <div style="background:var(--navy-dark);text-align:center;padding:0.55rem 1rem;border-bottom:1px solid rgba(255,153,51,0.2);">
+    <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:white;letter-spacing:0.04em;">AI SIKSHA</span>
+    <span style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-left:0.6rem;font-style:italic;">— a QuantumEdge Coaching Services company</span>
+  </div>
+
+  <!-- Tricolor Bar -->
+  <div class="tricolor-bar">
+    <span class="tc-saffron"></span>
+    <span class="tc-white"></span>
+    <span class="tc-green"></span>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">QE</div>
+        <div>
+          <div class="nav-logo-text">QuantumEdge</div>
+          <div class="nav-logo-sub">Coaching Services</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Stories</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-numeral" aria-hidden="true">&#x096F;</div>
+    <div class="hero-bg-circle hero-bg-circle-1"></div>
+    <div class="hero-bg-circle hero-bg-circle-2"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          India's Premier AI Training Partner
+        </div>
+        <div class="hero-tagline-devanagari">भारत का AI ट्रेनिंग पार्टनर</div>
+        <h1 class="hero-title">
+          Bharat ka<br />
+          <span class="accent">AI Training</span><br />
+          Partner
+        </h1>
+        <p class="hero-desc">
+          Purpose-built AI training programs for India's corporate workforce —
+          from large enterprises to small businesses, across every sector and
+          every corner of Bharat.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request Corporate Training</button>
+          <button class="btn-outline" onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})">Explore Programs</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">Our Impact in Numbers</div>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Courses</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Corporates Trained</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Satisfaction Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Employees Trained</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why QuantumEdge -->
+  <section class="why-section" id="why">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Built for Bharat's Enterprises</h2>
+        <p class="section-subtitle">We understand the Indian IT ecosystem — the scale of Tier-1 IT parks, the ambition of Tier-2 city talent, and the compliance needs of India's regulated industries.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🇮🇳</div>
+          <h3>Made in India, For India</h3>
+          <p>Our curriculum is tailored to Indian enterprise contexts — SEBI regulations, RBI compliance, IT Act frameworks, and the Digital India vision. Not a copy-paste from global content.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💻</div>
+          <h3>100% Online, India-Wide</h3>
+          <p>All our training programs are delivered virtually — live instructor-led sessions accessible from anywhere in India. From large enterprises to small businesses, we customise delivery to fit your team size, sector, and schedule.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🧠</div>
+          <h3>Industry-Expert Trainers</h3>
+          <p>Learn from practitioners who've built AI systems at India's top IT firms. Real case studies from TCS, Infosys, Wipro projects — not hypothetical Silicon Valley scenarios.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📊</div>
+          <h3>Measurable ROI</h3>
+          <p>Pre/post skill assessments, manager dashboards, and 30-day follow-up coaching. We don't just train — we help you prove the business value of upskilling to your leadership.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <h3>Rapid Deployment</h3>
+          <p>From inquiry to first session in under 2 weeks. Batch sizes from 15 to 500+ participants. Flexible scheduling around your sprint cycles, quarter-ends, and project timelines.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <h3>Compliance-Ready Programs</h3>
+          <p>Our GDPR, CCPA, and Responsible AI modules align with India's DPDP Act 2023. Stay ahead of regulatory requirements while building genuine AI capability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="programs-section" id="programs">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Our Programs</div>
+        <h2 class="section-title">Training Programs for the AI Economy</h2>
+        <p class="section-subtitle">From enterprise AI adoption to compliance, kids education, retail, and small businesses — plus fully customised programs built around your needs.</p>
+      </div>
+      <div class="programs-grid">
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#FFF3E0;">🤖</div>
+            <span class="program-badge badge-hot">Most Popular</span>
+          </div>
+          <h3>Generative AI for Enterprises</h3>
+          <p>End-to-end GenAI literacy for corporate teams — from understanding LLMs to deploying internal GenAI tools. Includes hands-on labs with Indian-language datasets and enterprise integration patterns.</p>
+          <div class="program-tags">
+            <span class="program-tag">LLMs</span>
+            <span class="program-tag">RAG Systems</span>
+            <span class="program-tag">Enterprise Deployment</span>
+            <span class="program-tag">Hindi NLP</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#E8F5E9;">🕵️</div>
+            <span class="program-badge badge-new">New 2025</span>
+          </div>
+          <h3>Agentic AI Systems</h3>
+          <p>Design and govern multi-agent AI architectures for enterprise automation. Covers agent orchestration, tool use, memory systems, and safety frameworks suited to BFSI and IT sectors.</p>
+          <div class="program-tags">
+            <span class="program-tag">Agent Design</span>
+            <span class="program-tag">Tool Calling</span>
+            <span class="program-tag">Orchestration</span>
+            <span class="program-tag">Safety</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#E8EAF6;">⚖️</div>
+            <span class="program-badge badge-core">Compliance</span>
+          </div>
+          <h3>GDPR &amp; CCPA Compliance</h3>
+          <p>Critical for Indian IT companies serving global clients. Deep-dive into data privacy regulations affecting Indian BPO, ITES, and tech exports. Aligned with India's DPDP Act 2023.</p>
+          <div class="program-tags">
+            <span class="program-tag">GDPR</span>
+            <span class="program-tag">CCPA</span>
+            <span class="program-tag">DPDP Act</span>
+            <span class="program-tag">Data Governance</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#FFF8E1;">💰</div>
+            <span class="program-badge badge-adv">Specialized</span>
+          </div>
+          <h3>Finance AI</h3>
+          <p>AI applications for India's BFSI sector — fraud detection, credit scoring, regulatory reporting, algorithmic trading compliance, and RBI/SEBI-aware AI deployment guidelines.</p>
+          <div class="program-tags">
+            <span class="program-tag">BFSI</span>
+            <span class="program-tag">RBI Compliance</span>
+            <span class="program-tag">Fraud Detection</span>
+            <span class="program-tag">Credit AI</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#F3E5F5;">✍️</div>
+            <span class="program-badge badge-hot">High Demand</span>
+          </div>
+          <h3>Prompt Engineering</h3>
+          <p>Practical prompt engineering for business users and developers. From zero-shot to chain-of-thought reasoning. Special modules for Indian-language prompting and enterprise-grade prompt libraries.</p>
+          <div class="program-tags">
+            <span class="program-tag">CoT Prompting</span>
+            <span class="program-tag">Few-Shot</span>
+            <span class="program-tag">Multilingual</span>
+            <span class="program-tag">Prompt Libraries</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#E0F7FA;">🛡️</div>
+            <span class="program-badge badge-core">Essential</span>
+          </div>
+          <h3>Responsible AI</h3>
+          <p>Building ethical, fair, and accountable AI systems in the Indian context. Covers AI bias in Indian datasets, explainability requirements, governance frameworks, and NITI Aayog's AI principles.</p>
+          <div class="program-tags">
+            <span class="program-tag">AI Ethics</span>
+            <span class="program-tag">Bias Auditing</span>
+            <span class="program-tag">Explainability</span>
+            <span class="program-tag">NITI Aayog</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#FFF9C4;">🧒</div>
+            <span class="program-badge badge-new">New</span>
+          </div>
+          <h3>AI for Kids</h3>
+          <p>Fun, age-appropriate introduction to Artificial Intelligence for school students (Grades 5–10). Covers how AI works, creative AI tools, responsible use, and sparks future-ready thinking aligned with NEP 2020.</p>
+          <div class="program-tags">
+            <span class="program-tag">Grades 5–10</span>
+            <span class="program-tag">NEP 2020</span>
+            <span class="program-tag">Creative AI</span>
+            <span class="program-tag">Schools</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#FCE4EC;">🏛️</div>
+            <span class="program-badge badge-hot">India Specific</span>
+          </div>
+          <h3>India Digital Personal Data Protection</h3>
+          <p>India's DPDP Act 2023 decoded for enterprises. Covers data fiduciary obligations, consent frameworks, data localisation, penalty structures, and practical compliance implementation for Indian businesses.</p>
+          <div class="program-tags">
+            <span class="program-tag">DPDP Act</span>
+            <span class="program-tag">Data Fiduciary</span>
+            <span class="program-tag">Consent Management</span>
+            <span class="program-tag">India Compliance</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#E8F5E9;">🛒</div>
+            <span class="program-badge badge-new">New</span>
+          </div>
+          <h3>AI for Retail</h3>
+          <p>Practical AI applications for India's booming retail sector — demand forecasting, personalised recommendations, inventory optimisation, customer behaviour analytics, and AI-powered loyalty programs for modern Bharat.</p>
+          <div class="program-tags">
+            <span class="program-tag">Demand Forecasting</span>
+            <span class="program-tag">Customer AI</span>
+            <span class="program-tag">Inventory AI</span>
+            <span class="program-tag">D2C Brands</span>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#F3E5F5;">🏪</div>
+            <span class="program-badge badge-new">New</span>
+          </div>
+          <h3>AI for Small Business</h3>
+          <p>No-code and low-code AI tools tailored for Indian SMEs, MSMEs, and startups. Automate customer support, marketing, and operations with affordable AI — without needing a data science team.</p>
+          <div class="program-tags">
+            <span class="program-tag">SME / MSME</span>
+            <span class="program-tag">No-Code AI</span>
+            <span class="program-tag">Automation</span>
+            <span class="program-tag">Startups</span>
+          </div>
+        </div>
+
+        <div class="program-card" style="border: 2px dashed rgba(255,153,51,0.4); background: linear-gradient(135deg, #FFFBF5, #FFF3E0);">
+          <div class="program-card-top">
+            <div class="program-icon" style="background:#FFF3E0;">✨</div>
+            <span class="program-badge badge-adv">Flexible</span>
+          </div>
+          <h3>Customised Programs</h3>
+          <p>Every organisation has unique needs. We build fully bespoke training programs — tailored curriculum, custom case studies, your industry, your tools, your timeline. From healthcare to government to manufacturing.</p>
+          <div class="program-tags">
+            <span class="program-tag">Bespoke Curriculum</span>
+            <span class="program-tag">Any Sector</span>
+            <span class="program-tag">Any Team Size</span>
+            <span class="program-tag">Email Us</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Pricing -->
+  <section style="background:var(--navy-dark);padding:5rem 2rem;" id="pricing">
+    <div class="section-inner" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Pricing</div>
+      <h2 class="section-title" style="color:white;margin-bottom:1rem;">Flexible Pricing for Every Organisation</h2>
+      <p style="color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto 3rem;line-height:1.75;font-size:1rem;">
+        We believe great AI training should be accessible — whether you're a 5-person startup or a 5,000-employee enterprise. Pricing is customised to your team size, program, and duration.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:900px;margin:0 auto 2.5rem;">
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,153,51,0.2);border-radius:16px;padding:2rem;">
+          <div style="font-size:1.5rem;margin-bottom:0.75rem;">🏪</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:white;margin-bottom:0.5rem;">Small Business</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;">Affordable packages for SMEs &amp; MSMEs. Cohort-based online sessions designed for teams of 5–30.</div>
+        </div>
+        <div style="background:rgba(255,153,51,0.1);border:1px solid rgba(255,153,51,0.4);border-radius:16px;padding:2rem;">
+          <div style="font-size:1.5rem;margin-bottom:0.75rem;">🏢</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:white;margin-bottom:0.5rem;">Enterprise</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;">Volume pricing for large teams. Custom curriculum, dedicated trainer, and post-training support included.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,153,51,0.2);border-radius:16px;padding:2rem;">
+          <div style="font-size:1.5rem;margin-bottom:0.75rem;">✨</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:white;margin-bottom:0.5rem;">Custom</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:0.875rem;line-height:1.6;">Bespoke programs for unique needs. Tell us your goals and we'll design the right program and price.</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,153,51,0.1);border:1px solid rgba(255,153,51,0.3);border-radius:12px;padding:1.5rem 2rem;display:inline-block;">
+        <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:0.4rem;">For a personalised quote, simply email us at</div>
+        <a href="mailto:hr@qecservice.com" style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--saffron);text-decoration:none;">hr@qecservice.com</a>
+        <div style="color:rgba(255,255,255,0.4);font-size:0.78rem;margin-top:0.4rem;">We respond within 2 business days with a tailored proposal.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Client Stories</div>
+        <h2 class="section-title">Trusted Across India's IT Landscape</h2>
+        <p class="section-subtitle">Hear from learning &amp; development leaders at India's top enterprises who've partnered with QuantumEdge.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"QuantumEdge delivered our GenAI upskilling program to 1,200 engineers across our Bengaluru and Hyderabad campuses. The India-specific case studies made the training immediately applicable. Our teams went from curious to capable in just 3 months."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RS</div>
+            <div>
+              <div class="author-name">Ramesh Subramaniam</div>
+              <div class="author-role">Head of L&amp;D, Fortune 500 IT Services Company, Bengaluru</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"We needed GDPR and CCPA training for our entire BPO workforce of 5,000 in Pune and Chennai. QuantumEdge customised the content for our specific client contracts and industry verticals. Audit-ready in record time."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PM</div>
+            <div>
+              <div class="author-name">Priya Mehta</div>
+              <div class="author-role">VP Compliance, Large BPO Firm, Pune</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The Finance AI program was exactly what our risk team needed. Real examples from Indian banking — NBFC use cases, UPI fraud patterns, RBI circular context. QuantumEdge understands the Indian financial sector like no one else."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div>
+              <div class="author-name">Arjun Krishnamurthy</div>
+              <div class="author-role">Chief Risk Officer, Private Sector Bank, Mumbai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-label">Get In Touch</div>
+          <h2>Ready to Upskill<br />Your Team?</h2>
+          <p>Whether you're planning training for 15 or 15,000 — our corporate training consultants will design a program that fits your enterprise's goals, budget, and timeline.</p>
+
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-item-label">HR &amp; Partnerships</div>
+              <div class="contact-item-value">hr@qecservice.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📚</div>
+            <div>
+              <div class="contact-item-label">Training Enquiries</div>
+              <div class="contact-item-value">training@qecservice.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <div class="contact-item-label">Headquarters</div>
+              <div class="contact-item-value">Chandigarh, India</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem; padding: 1.5rem; background: var(--saffron-pale); border-radius: 16px; border-left: 4px solid var(--saffron);">
+            <div style="font-weight: 700; color: var(--navy-dark); margin-bottom: 0.4rem; font-family: 'Playfair Display', serif;">Response SLA</div>
+            <div style="font-size: 0.875rem; color: var(--gray-600); line-height: 1.6;">All corporate training inquiries receive a detailed proposal within <strong>2 business days</strong>. We respect your time and your team's bandwidth.</div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h3>Request a Training Proposal</h3>
+          <form onsubmit="handleSubmit(event)" action="mailto:hr@qecservice.com" method="get" enctype="text/plain">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="Rahul" required />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Sharma" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Work Email</label>
+              <input type="email" placeholder="rahul.sharma@company.com" required />
+            </div>
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" placeholder="Your Company Pvt. Ltd." required />
+            </div>
+            <div class="form-group">
+              <label>Program of Interest</label>
+              <select required>
+                <option value="" disabled selected>Select a program...</option>
+                <option>Generative AI for Enterprises</option>
+                <option>Agentic AI Systems</option>
+                <option>GDPR &amp; CCPA Compliance</option>
+                <option>Finance AI</option>
+                <option>Prompt Engineering</option>
+                <option>Responsible AI</option>
+                <option>AI for Kids</option>
+                <option>India Digital Personal Data Protection</option>
+                <option>AI for Retail</option>
+                <option>AI for Small Business</option>
+                <option>Multiple / Custom Program</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Team Size</label>
+              <select required>
+                <option value="" disabled selected>Select batch size...</option>
+                <option>15–50 participants</option>
+                <option>50–200 participants</option>
+                <option>200–500 participants</option>
+                <option>500+ participants</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Tell us about your training goals, timelines, or specific requirements..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Enquiry →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+            <div style="width:38px;height:38px;background:linear-gradient(135deg,#FF9933,#FF6600);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;color:white;font-size:1rem;">QE</div>
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-weight:700;color:white;font-size:1rem;">QuantumEdge Coaching Services</div>
+              <div style="font-size:0.65rem;color:var(--saffron-light);letter-spacing:0.05em;text-transform:uppercase;">AI Siksha — a QuantumEdge Coaching Services company</div>
+            </div>
+          </div>
+          <p>Empowering India's corporate workforce with cutting-edge AI skills. From Bharat's IT hubs to emerging tech corridors — we train the talent that powers Digital India.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li>Generative AI</li>
+            <li>Agentic AI Systems</li>
+            <li>GDPR &amp; CCPA</li>
+            <li>Finance AI</li>
+            <li>AI for Kids</li>
+            <li>AI for Retail</li>
+            <li>AI for Small Business</li>
+            <li>India DPDP Act</li>
+            <li>Customised Programs</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>We Serve</h4>
+          <ul>
+            <li>IT &amp; ITES Companies</li>
+            <li>BFSI Sector</li>
+            <li>Manufacturing</li>
+            <li>Healthcare</li>
+            <li>GCC / Captives</li>
+            <li>Government &amp; PSUs</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>hr@qecservice.com</li>
+            <li>training@qecservice.com</li>
+            <li>Chandigarh, India</li>
+            <li>&nbsp;</li>
+            <li>CIN: U74999KA2023</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-made">Proudly Made in India 🇮🇳</div>
+        <div class="footer-copy">© 2025 QuantumEdge Coaching Services Pvt. Ltd. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Form submit handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Enquiry Sent! We\'ll be in touch within 2 business days.';
+      btn.style.background = '#138808';
+      btn.style.color = 'white';
+      btn.disabled = true;
+    }
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.why-card, .program-card, .testimonial-card, .city-chip').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+
+    // Navbar scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 20
+        ? '0 4px 24px rgba(0,0,0,0.5)'
+        : '0 2px 16px rgba(0,0,0,0.35)';
+    });
+  </script>
+</body>
+</html>
