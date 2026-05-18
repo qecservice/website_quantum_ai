@@ -1247,28 +1247,29 @@
 
         <div class="contact-form-card">
           <h3>Request a Training Proposal</h3>
-          <form onsubmit="handleSubmit(event)" novalidate>
+          <form name="training-enquiry" method="POST" data-netlify="true" onsubmit="handleSubmit(event)" novalidate>
+            <input type="hidden" name="form-name" value="training-enquiry" />
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" placeholder="Rahul" required />
+                <input type="text" name="first-name" placeholder="Rahul" required />
               </div>
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" placeholder="Sharma" required />
+                <input type="text" name="last-name" placeholder="Sharma" required />
               </div>
             </div>
             <div class="form-group">
               <label>Work Email</label>
-              <input type="email" placeholder="rahul.sharma@company.com" required />
+              <input type="email" name="email" placeholder="rahul.sharma@company.com" required />
             </div>
             <div class="form-group">
               <label>Company Name</label>
-              <input type="text" placeholder="Your Company Pvt. Ltd." required />
+              <input type="text" name="company" placeholder="Your Company Pvt. Ltd." required />
             </div>
             <div class="form-group">
               <label>Program of Interest</label>
-              <select required>
+              <select name="program" required>
                 <option value="" disabled selected>Select a program...</option>
                 <option>Generative AI for Enterprises</option>
                 <option>Agentic AI Systems</option>
@@ -1285,7 +1286,7 @@
             </div>
             <div class="form-group">
               <label>Team Size</label>
-              <select required>
+              <select name="team-size" required>
                 <option value="" disabled selected>Select batch size...</option>
                 <option>15–50 participants</option>
                 <option>50–200 participants</option>
@@ -1295,10 +1296,13 @@
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea placeholder="Tell us about your training goals, timelines, or specific requirements..."></textarea>
+              <textarea name="message" placeholder="Tell us about your training goals, timelines, or specific requirements..."></textarea>
             </div>
             <button type="submit" class="form-submit">Send Enquiry →</button>
           </form>
+          <div id="form-success" style="display:none; margin-top:1.5rem; padding:1.25rem 1.5rem; background:rgba(19,136,8,0.15); border:1px solid rgba(19,136,8,0.4); border-radius:12px; color:#c6f7b8; font-size:0.95rem; line-height:1.6;">
+            ✅ <strong>Enquiry received!</strong> We'll send a detailed proposal to your email within 2 business days.
+          </div>
         </div>
       </div>
     </div>
@@ -1362,39 +1366,28 @@
   </footer>
 
   <script>
-    // Form submit handler
+    // Form submit handler — Netlify Forms AJAX submission
     function handleSubmit(e) {
       e.preventDefault();
       const f = e.target;
-      const selects  = f.querySelectorAll('select');
-      const firstName = (f.querySelector('input[placeholder="Rahul"]') || {}).value || '';
-      const lastName  = (f.querySelector('input[placeholder="Sharma"]') || {}).value || '';
-      const email     = (f.querySelector('input[type="email"]') || {}).value || '';
-      const company   = (f.querySelector('input[placeholder="Your Company Pvt. Ltd."]') || {}).value || '';
-      const program   = selects[0] ? selects[0].value : '';
-      const teamsize  = selects[1] ? selects[1].value : '';
-      const message   = (f.querySelector('textarea') || {}).value || '';
-      const subject   = encodeURIComponent('Training Enquiry — ' + (company || 'New Lead'));
-      const body      = encodeURIComponent(
-        'Name: ' + firstName + ' ' + lastName + '\n' +
-        'Email: ' + email + '\n' +
-        'Company: ' + company + '\n' +
-        'Program: ' + program + '\n' +
-        'Team Size: ' + teamsize + '\n\n' +
-        'Message:\n' + message
-      );
-      // Use anchor click — more reliable than window.location.href for mailto on HTTPS
-      const a = document.createElement('a');
-      a.href = 'mailto:hr@qecservice.com?subject=' + subject + '&body=' + body;
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => document.body.removeChild(a), 200);
       const btn = f.querySelector('.form-submit');
-      btn.textContent = 'Opening your email client…';
-      btn.style.background = '#138808';
-      btn.style.color = 'white';
+      btn.textContent = 'Sending…';
       btn.disabled = true;
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(f)).toString()
+      })
+        .then(() => {
+          f.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        })
+        .catch(() => {
+          btn.textContent = 'Failed — please email hr@qecservice.com';
+          btn.style.background = '#cc0000';
+          btn.disabled = false;
+        });
     }
 
     // Intersection observer for fade-in
