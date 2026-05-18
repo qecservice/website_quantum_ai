@@ -1366,22 +1366,30 @@
     function handleSubmit(e) {
       e.preventDefault();
       const f = e.target;
-      const get = sel => (f.querySelector(sel) || {}).value || '';
-      const firstName = get('input[placeholder="Rahul"]');
-      const lastName  = get('input[placeholder="Sharma"]');
-      const email     = get('input[type="email"]');
-      const company   = get('input[placeholder="Your Company Pvt. Ltd."]');
-      const program   = get('select');
-      const message   = get('textarea');
+      const selects  = f.querySelectorAll('select');
+      const firstName = (f.querySelector('input[placeholder="Rahul"]') || {}).value || '';
+      const lastName  = (f.querySelector('input[placeholder="Sharma"]') || {}).value || '';
+      const email     = (f.querySelector('input[type="email"]') || {}).value || '';
+      const company   = (f.querySelector('input[placeholder="Your Company Pvt. Ltd."]') || {}).value || '';
+      const program   = selects[0] ? selects[0].value : '';
+      const teamsize  = selects[1] ? selects[1].value : '';
+      const message   = (f.querySelector('textarea') || {}).value || '';
       const subject   = encodeURIComponent('Training Enquiry — ' + (company || 'New Lead'));
       const body      = encodeURIComponent(
         'Name: ' + firstName + ' ' + lastName + '\n' +
         'Email: ' + email + '\n' +
         'Company: ' + company + '\n' +
-        'Program: ' + program + '\n\n' +
+        'Program: ' + program + '\n' +
+        'Team Size: ' + teamsize + '\n\n' +
         'Message:\n' + message
       );
-      window.location.href = 'mailto:hr@qecservice.com?subject=' + subject + '&body=' + body;
+      // Use anchor click — more reliable than window.location.href for mailto on HTTPS
+      const a = document.createElement('a');
+      a.href = 'mailto:hr@qecservice.com?subject=' + subject + '&body=' + body;
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => document.body.removeChild(a), 200);
       const btn = f.querySelector('.form-submit');
       btn.textContent = 'Opening your email client…';
       btn.style.background = '#138808';
