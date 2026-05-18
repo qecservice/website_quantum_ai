@@ -1247,7 +1247,7 @@
 
         <div class="contact-form-card">
           <h3>Request a Training Proposal</h3>
-          <form onsubmit="handleSubmit(event)" action="mailto:hr@qecservice.com" method="get" enctype="text/plain">
+          <form onsubmit="handleSubmit(event)" novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
@@ -1365,8 +1365,25 @@
     // Form submit handler
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = 'Enquiry Sent! We\'ll be in touch within 2 business days.';
+      const f = e.target;
+      const get = sel => (f.querySelector(sel) || {}).value || '';
+      const firstName = get('input[placeholder="Rahul"]');
+      const lastName  = get('input[placeholder="Sharma"]');
+      const email     = get('input[type="email"]');
+      const company   = get('input[placeholder="Your Company Pvt. Ltd."]');
+      const program   = get('select');
+      const message   = get('textarea');
+      const subject   = encodeURIComponent('Training Enquiry — ' + (company || 'New Lead'));
+      const body      = encodeURIComponent(
+        'Name: ' + firstName + ' ' + lastName + '\n' +
+        'Email: ' + email + '\n' +
+        'Company: ' + company + '\n' +
+        'Program: ' + program + '\n\n' +
+        'Message:\n' + message
+      );
+      window.location.href = 'mailto:hr@qecservice.com?subject=' + subject + '&body=' + body;
+      const btn = f.querySelector('.form-submit');
+      btn.textContent = 'Opening your email client…';
       btn.style.background = '#138808';
       btn.style.color = 'white';
       btn.disabled = true;
